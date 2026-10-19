@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap">
 <link rel="stylesheet" href="../../assets/css/site.css">
-<script>(function(d){var r=d.documentElement;r.classList.remove('no-js');r.classList.add('js');try{if(localStorage.getItem('dn-motion')==='off')r.classList.add('reduce-motion');if(!sessionStorage.getItem('dn-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('dn-motion')!=='off')r.classList.add('is-loading')}catch(e){}setTimeout(function(){r.classList.remove('is-loading')},4000)})(document);</script>
+<script>(function(d){var r=d.documentElement;r.classList.remove('no-js');r.classList.add('js');try{if(localStorage.getItem('dn-motion')==='off')r.classList.add('reduce-motion');if(!sessionStorage.getItem('dn-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('dn-motion')!=='off')r.classList.add('is-loading')}catch(e){}setTimeout(function(){r.classList.remove('is-loading')},4000);setTimeout(function(){if(!window.gsap)r.classList.add('split-failsafe')},3000)})(document);</script>
 <style>@view-transition{navigation:auto}</style>
 </head>
 <body>
@@ -36,8 +36,8 @@
 <div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../../#top" aria-label="David Ngeiywa — home"><span class="brand__mark" aria-hidden="true">DN</span><span class="brand__name">David Ngeiywa<small>Technical lead · Digital Tailor Agency</small></span></a>
-    <nav class="nav" aria-label="Primary"><a href="../../#work" data-scramble>Work</a><a href="../../#capabilities" data-scramble>Capabilities</a><a href="../../#process" data-scramble>Process</a><a href="../../#archive" data-scramble>Archive</a><a href="../../#contact" data-scramble>Contact</a></nav>
+    <a class="brand" href="../../#top" aria-label="David Ngeiywa — home"><span class="brand__mark" aria-hidden="true">DN</span><span class="brand__name">David Ngeiywa<small>Engineer · Founder · Head of IT</small></span></a>
+    <nav class="nav" aria-label="Primary"><a href="../../#work">Work</a><a href="../../#capabilities">Capabilities</a><a href="../../#process">Process</a><a href="../../#archive">Archive</a><a href="../../#contact">Contact</a></nav>
     <div class="header-tools">
       <span class="clock"><i aria-hidden="true"></i><span data-clock>NBO · EAT</span></span>
       <a class="btn btn--sm" href="../../#contact" data-magnetic><span class="btn__label">Start a project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -47,7 +47,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav aria-label="Mobile"><a href="../../#work"><small>01</small>Work</a><a href="../../#capabilities"><small>02</small>Capabilities</a><a href="../../#process"><small>03</small>Process</a><a href="../../#archive"><small>04</small>Archive</a><a href="../../#contact"><small>05</small>Contact</a></nav>
-  <div class="mono mute"><span data-clock>NBO · EAT</span><br>info@dta.co.ke</div>
+  <div class="mono mute"><span data-clock>NBO · EAT</span><br>david@dta.co.ke</div>
 </div>
 <main id="main" style="--accent:#F08A77">
   <section class="case-hero">
@@ -72,7 +72,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-meta">
-      <span>© 2026 David Ngeiywa · <a class="link-u" href="https://www.dta.co.ke" rel="noopener">Digital Tailor Agency</a></span>
+      <span>© 2026 David Ngeiywa · Co-founder, Novatrix &amp; Baobab Labs</span>
       <span class="mono">1.2921° S, 36.8219° E</span>
       <span>Hand-built with vanilla JS, GSAP &amp; Lenis. Press <kbd>Ctrl</kbd> + <kbd>G</kbd> for the grid.</span>
     </div>

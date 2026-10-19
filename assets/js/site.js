@@ -73,17 +73,8 @@
   function initHeader() {
     const header = document.querySelector('.site-header');
     if (!header) return;
-    let last = 0;
-    ScrollTrigger.create({
-      start: 0, end: 'max',
-      onUpdate(self) {
-        const y = self.scroll();
-        header.classList.toggle('is-scrolled', y > 24);
-        const down = y > last && y > 400;
-        header.classList.toggle('is-hidden', down && !root.classList.contains('menu-open'));
-        last = y;
-      },
-    });
+    ScrollTrigger.create({ start: 24, end: 'max', onToggle: self => header.classList.toggle('is-scrolled', self.isActive) });
+    header.classList.toggle('is-scrolled', window.scrollY > 24);
     const btn = document.querySelector('.menu-btn');
     const menu = document.querySelector('.mobile-menu');
     if (btn && menu) {
@@ -157,18 +148,11 @@
   function initTiles() {
     if (!finePointer) return;
     document.querySelectorAll('[data-tilt]').forEach(el => {
-      const max = parseFloat(el.dataset.tilt) || 6;
-      const rx = gsap.quickTo(el, 'rotationX', { duration: 0.6, ease: 'power3' });
-      const ry = gsap.quickTo(el, 'rotationY', { duration: 0.6, ease: 'power3' });
-      gsap.set(el, { transformPerspective: 900 });
       el.addEventListener('pointermove', e => {
         const r = el.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-        el.style.setProperty('--mx', `${px * 100}%`); el.style.setProperty('--my', `${py * 100}%`);
-        if (!motionOK()) return;
-        ry((px - 0.5) * max * 2); rx(-(py - 0.5) * max * 2);
+        el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+        el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
       });
-      el.addEventListener('pointerleave', () => { rx(0); ry(0); });
     });
   }
 
@@ -223,19 +207,20 @@
   /* ---------- Generic reveals ---------- */
   function initReveals() {
     // Masked line reveals for headings.
+    const heads = [...document.querySelectorAll('[data-split]')];
+    const showAll = () => heads.forEach(el => el.classList.add('is-split'));
     if (window.SplitText) {
-      document.querySelectorAll('[data-split]').forEach(el => {
-        SplitText.create(el, {
-          type: 'lines', mask: 'lines', linesClass: 'split-line', autoSplit: true,
-          onSplit(self) {
-            return gsap.from(self.lines, {
-              yPercent: 110, duration: 1.1, stagger: 0.08, ease: 'expo.out',
-              scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-            });
-          },
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+        heads.forEach(el => {
+          const split = SplitText.create(el, { type: 'lines', mask: 'lines', linesClass: 'split-line' });
+          el.classList.add('is-split');
+          gsap.from(split.lines, {
+            yPercent: 110, duration: 1.1, stagger: 0.08, ease: 'expo.out',
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          });
         });
       });
-    }
+    } else showAll();
     // Fade-up blocks, batched for efficiency.
     const items = gsap.utils.toArray('[data-reveal]');
     if (items.length) {
@@ -269,19 +254,10 @@
   function initMarquee() {
     document.querySelectorAll('.marquee').forEach(m => {
       const track = m.querySelector('.marquee__track');
-      const skewEl = m.querySelector('.marquee__skew');
       if (!track) return;
       const anim = track.getAnimations ? track.getAnimations()[0] : null;
-      const skewTo = skewEl && gsap.quickTo(skewEl, 'skewX', { duration: 0.6, ease: 'power3' });
-      ScrollTrigger.create({
-        trigger: m, start: 'top bottom', end: 'bottom top',
-        onUpdate(self) {
-          const v = gsap.utils.clamp(-1600, 1600, self.getVelocity());
-          if (skewTo) skewTo(v / -220);
-          if (anim) anim.playbackRate = 1 + Math.abs(v) / 500;
-        },
-        onToggle(self) { if (anim) self.isActive ? anim.play() : anim.pause(); },
-      });
+      if (!anim) return;
+      ScrollTrigger.create({ trigger: m, start: 'top bottom', end: 'bottom top', onToggle: self => (self.isActive ? anim.play() : anim.pause()) });
     });
   }
 

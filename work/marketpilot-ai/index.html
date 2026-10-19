@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap">
 <link rel="stylesheet" href="../../assets/css/site.css">
-<script>(function(d){var r=d.documentElement;r.classList.remove('no-js');r.classList.add('js');try{if(localStorage.getItem('dn-motion')==='off')r.classList.add('reduce-motion');if(!sessionStorage.getItem('dn-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('dn-motion')!=='off')r.classList.add('is-loading')}catch(e){}setTimeout(function(){r.classList.remove('is-loading')},4000)})(document);</script>
+<script>(function(d){var r=d.documentElement;r.classList.remove('no-js');r.classList.add('js');try{if(localStorage.getItem('dn-motion')==='off')r.classList.add('reduce-motion');if(!sessionStorage.getItem('dn-seen')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&localStorage.getItem('dn-motion')!=='off')r.classList.add('is-loading')}catch(e){}setTimeout(function(){r.classList.remove('is-loading')},4000);setTimeout(function(){if(!window.gsap)r.classList.add('split-failsafe')},3000)})(document);</script>
 <style>@view-transition{navigation:auto}</style>
 </head>
 <body>
@@ -36,8 +36,8 @@
 <div class="scroll-progress" aria-hidden="true"></div>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="../../#top" aria-label="David Ngeiywa — home"><span class="brand__mark" aria-hidden="true">DN</span><span class="brand__name">David Ngeiywa<small>Technical lead · Digital Tailor Agency</small></span></a>
-    <nav class="nav" aria-label="Primary"><a href="../../#work" data-scramble>Work</a><a href="../../#capabilities" data-scramble>Capabilities</a><a href="../../#process" data-scramble>Process</a><a href="../../#archive" data-scramble>Archive</a><a href="../../#contact" data-scramble>Contact</a></nav>
+    <a class="brand" href="../../#top" aria-label="David Ngeiywa — home"><span class="brand__mark" aria-hidden="true">DN</span><span class="brand__name">David Ngeiywa<small>Engineer · Founder · Head of IT</small></span></a>
+    <nav class="nav" aria-label="Primary"><a href="../../#work">Work</a><a href="../../#capabilities">Capabilities</a><a href="../../#process">Process</a><a href="../../#archive">Archive</a><a href="../../#contact">Contact</a></nav>
     <div class="header-tools">
       <span class="clock"><i aria-hidden="true"></i><span data-clock>NBO · EAT</span></span>
       <a class="btn btn--sm" href="../../#contact" data-magnetic><span class="btn__label">Start a project</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -47,17 +47,17 @@
 </header>
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <nav aria-label="Mobile"><a href="../../#work"><small>01</small>Work</a><a href="../../#capabilities"><small>02</small>Capabilities</a><a href="../../#process"><small>03</small>Process</a><a href="../../#archive"><small>04</small>Archive</a><a href="../../#contact"><small>05</small>Contact</a></nav>
-  <div class="mono mute"><span data-clock>NBO · EAT</span><br>info@dta.co.ke</div>
+  <div class="mono mute"><span data-clock>NBO · EAT</span><br>david@dta.co.ke</div>
 </div>
 <main id="main" style="--accent:#FF7A2F">
   <section class="case-hero">
     <div class="wrap">
       <nav class="case-hero__crumb" aria-label="Breadcrumb"><a href="../../#work">← All work</a><span class="mono mute">/</span><span class="mono mute">MarketPilot AI</span></nav>
-      <p class="case-hero__client">Digital Tailor Agency · 2026</p>
+      <p class="case-hero__client">Digital Tailor Agency (product) · 2026</p>
       <h1 data-split>MarketPilot AI <span class="serif">Marketing command centre</span></h1>
-      <p class="case-hero__lede" data-reveal>DTA’s marketing SaaS. Brands connect social, ad, analytics, review and commerce accounts, then plan, create, publish, reply and report from one workspace.</p>
+      <p class="case-hero__lede" data-reveal>A marketing SaaS I lead as a product for Digital Tailor Agency. Brands connect social, ad, analytics, review and commerce accounts, then plan, create, publish, reply and report from one workspace.</p>
       <div style="margin-top:22px" data-reveal><span class="chip chip--build"><i></i>Moving to self-hosting</span></div>
-      <dl class="case-meta"><div data-reveal><dt>Client</dt><dd>Digital Tailor Agency</dd></div><div data-reveal><dt>Role</dt><dd>Product lead</dd></div><div data-reveal><dt>Year</dt><dd>2026</dd></div><div data-reveal><dt>Type</dt><dd>AI marketing SaaS</dd></div></dl>
+      <dl class="case-meta"><div data-reveal><dt>Client</dt><dd>Digital Tailor Agency (product)</dd></div><div data-reveal><dt>Role</dt><dd>Product lead</dd></div><div data-reveal><dt>Year</dt><dd>2026</dd></div><div data-reveal><dt>Type</dt><dd>AI marketing SaaS</dd></div></dl>
       <div class="case-cover" data-clip data-shot-host><div class="browser" style="view-transition-name:shot-marketpilot-ai"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>architecture · marketpilot ai</div></div><div class="browser__view"><div class="system-art"><svg viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="MarketPilot AI system diagram"><defs><pattern id="gmarketpilotai" width="40" height="40" patternUnits="userSpaceOnUse"><path class="sa-grid" d="M40 0H0V40" fill="none"/></pattern><radialGradient id="rmarketpilotai"><stop offset="0" stop-color="#FF7A2F" stop-opacity=".22"/><stop offset="1" stop-color="#FF7A2F" stop-opacity="0"/></radialGradient></defs><rect width="800" height="500" fill="url(#gmarketpilotai)"/><ellipse cx="400" cy="250" rx="360" ry="230" fill="url(#rmarketpilotai)"/><path class="sa-l" d="M228 105 C 259 105, 259 250, 290 250"/><path class="sa-f" d="M228 105 C 259 105, 259 250, 290 250" style="animation-delay:0s"/><path class="sa-l" d="M228 250 C 259 250, 259 250, 290 250"/><path class="sa-f" d="M228 250 C 259 250, 259 250, 290 250" style="animation-delay:-0.27s"/><path class="sa-l" d="M228 395 C 259 395, 259 250, 290 250"/><path class="sa-f" d="M228 395 C 259 395, 259 250, 290 250" style="animation-delay:-0.54s"/><path class="sa-l" d="M572 105 C 541 105, 541 250, 510 250"/><path class="sa-f" d="M572 105 C 541 105, 541 250, 510 250" style="animation-delay:-0.81s"/><path class="sa-l" d="M572 250 C 541 250, 541 250, 510 250"/><path class="sa-f" d="M572 250 C 541 250, 541 250, 510 250" style="animation-delay:-1.08s"/><path class="sa-l" d="M572 395 C 541 395, 541 250, 510 250"/><path class="sa-f" d="M572 395 C 541 395, 541 250, 510 250" style="animation-delay:-1.35s"/><g><rect class="sa-box" x="32" y="76" width="196" height="58" rx="10"/><text class="sa-t" x="130" y="102" text-anchor="middle">Social</text><text class="sa-s" x="130" y="120" text-anchor="middle">Meta · TikTok · X</text></g><g><rect class="sa-box" x="32" y="221" width="196" height="58" rx="10"/><text class="sa-t" x="130" y="247" text-anchor="middle">Ads</text><text class="sa-s" x="130" y="265" text-anchor="middle">Google · Meta</text></g><g><rect class="sa-box" x="32" y="366" width="196" height="58" rx="10"/><text class="sa-t" x="130" y="392" text-anchor="middle">Commerce</text><text class="sa-s" x="130" y="410" text-anchor="middle">Shopify</text></g><g><rect class="sa-box" x="572" y="76" width="196" height="58" rx="10"/><text class="sa-t" x="670" y="102" text-anchor="middle">AI studio</text><text class="sa-s" x="670" y="120" text-anchor="middle">Gemini</text></g><g><rect class="sa-box" x="572" y="221" width="196" height="58" rx="10"/><text class="sa-t" x="670" y="247" text-anchor="middle">Reports</text><text class="sa-s" x="670" y="265" text-anchor="middle">White-label</text></g><g><rect class="sa-box" x="572" y="366" width="196" height="58" rx="10"/><text class="sa-t" x="670" y="392" text-anchor="middle">MCP</text><text class="sa-s" x="670" y="410" text-anchor="middle">Agents</text></g><g><rect class="sa-box is-key" x="290" y="216" width="220" height="68" rx="12"/><text class="sa-t" x="400" y="245" text-anchor="middle">MarketPilot</text><text class="sa-s" x="400" y="265" text-anchor="middle">Workspaces</text></g></svg></div></div></div></div>
     </div>
   </section>
@@ -73,7 +73,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-meta">
-      <span>© 2026 David Ngeiywa · <a class="link-u" href="https://www.dta.co.ke" rel="noopener">Digital Tailor Agency</a></span>
+      <span>© 2026 David Ngeiywa · Co-founder, Novatrix &amp; Baobab Labs</span>
       <span class="mono">1.2921° S, 36.8219° E</span>
       <span>Hand-built with vanilla JS, GSAP &amp; Lenis. Press <kbd>Ctrl</kbd> + <kbd>G</kbd> for the grid.</span>
     </div>

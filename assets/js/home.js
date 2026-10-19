@@ -59,10 +59,6 @@
       if (y > sr.height - 90) y = r.top - sr.top - 90;
       tip.style.transform = `translate(${x}px, ${y}px)`;
       tip.classList.add('is-on');
-      if (window.ScrambleTextPlugin && motion()) {
-        const t = node.querySelector('text');
-        gsap.to(t, { duration: 0.5, scrambleText: { text: t.textContent, chars: 'upperCase', speed: 0.8 } });
-      }
     };
     const off = () => { sx.classList.remove('is-focus'); $$('.is-on', sx).forEach(el => el.classList.remove('is-on')); tip.classList.remove('is-on'); };
     $$('.sx-node[data-i]', sx).forEach(n => {
@@ -87,6 +83,7 @@
   mm.add({ desktop: '(min-width: 981px)', motion: '(prefers-reduced-motion: no-preference)' }, ctx => {
     const { desktop } = ctx.conditions;
     if (!motion()) return;
+    const cleanups = [];
 
     // Hero parallax out.
     gsap.to('.hero__copy', { yPercent: -18, autoAlpha: 0.15, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -105,19 +102,20 @@
       });
     }
 
-    // Product lab: pinned horizontal scroll.
-    const pin = $('.hscroll__pin'), track = $('.hscroll__track'), bar = $('.hscroll__progress i');
-    if (desktop && pin && track) {
+    // Product lab: horizontal scroll inside a native sticky stage.
+    const lab = $('#lab'), stage = $('.hscroll__stage'), pin = $('.hscroll__pin'), track = $('.hscroll__track'), bar = $('.hscroll__progress i');
+    if (desktop && lab && stage && track) {
+      lab.classList.add('is-sticky');
       const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-      const tween = gsap.to(track, {
+      const size = () => stage.style.setProperty('--stage-h', `${pin.offsetHeight + dist()}px`);
+      size();
+      ScrollTrigger.addEventListener('refreshInit', size);
+      gsap.to(track, {
         x: () => -dist(), ease: 'none',
-        scrollTrigger: { trigger: pin, start: 'center center', end: () => '+=' + dist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1,
+        scrollTrigger: { trigger: stage, start: 'top top+=72', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true,
           onUpdate: self => bar && gsap.set(bar, { scaleX: self.progress }) },
       });
-      // Cards lean into the direction of travel.
-      $$('.lab-card', track).forEach(c => {
-        gsap.fromTo(c, { rotateY: -12, transformPerspective: 1200 }, { rotateY: 0, ease: 'none', scrollTrigger: { trigger: c, containerAnimation: tween, start: 'left right', end: 'center center', scrub: true } });
-      });
+      cleanups.push(() => { lab.classList.remove('is-sticky'); ScrollTrigger.removeEventListener('refreshInit', size); stage.style.removeProperty('--stage-h'); gsap.set(track, { clearProps: 'transform' }); });
     }
 
     // Process line draws through the steps.
@@ -135,6 +133,7 @@
 
     // Timeline years slide in.
     $$('.tl-year').forEach(y => gsap.from(y, { xPercent: -30, autoAlpha: 0, ease: 'expo.out', duration: 1.2, scrollTrigger: { trigger: y, start: 'top 85%', once: true } }));
+    return () => cleanups.forEach(fn => fn());
   });
   if (!motion()) {
     const proc = $('[data-process]');
