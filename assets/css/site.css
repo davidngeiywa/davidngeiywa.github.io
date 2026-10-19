@@ -286,13 +286,19 @@ html.gl-on .hero__aurora { display: none; }
   background-size: 88px 88px; mask-image: radial-gradient(ellipse 75% 70% at 60% 40%, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 75% 70% at 60% 40%, #000 30%, transparent 75%);
 }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: clamp(24px, 4vw, 64px); align-items: end; }
-.hero__copy { display: grid; gap: clamp(24px, 3vw, 36px); position: relative; z-index: 2; }
+.hero__copy { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: clamp(24px, 3vw, 36px); position: relative; z-index: 2; }
 .hero__title { font-size: var(--step-5); line-height: 0.92; letter-spacing: -0.055em; font-weight: 650; font-stretch: 110%; max-width: 11.5ch; }
 .hero__title .serif { font-weight: 400; letter-spacing: -0.02em; font-stretch: 100%; color: var(--volt); padding-right: 0.06em; }
-.hero__rotator { display: inline-block; position: relative; white-space: nowrap; }
+.hero__title { container-type: inline-size; }
+/* Longest word ≈ 5.7em wide: cap the size to the title's width so it never overflows its line. */
+.hero__rotator { display: inline-grid; position: relative; white-space: nowrap; font-size: min(1em, 15.6cqi); }
+/* The sizer reserves the width of the longest word; the animated text floats on top, so scrambling never re-flows the hero. */
+.hero__rot-sizer { display: inline-grid; visibility: hidden; }
+.hero__rot-sizer > span { grid-area: 1 / 1; }
+.hero__rot-text { position: absolute; left: 0; top: 0; white-space: nowrap; }
 .hero__line { display: block; overflow: clip; padding-bottom: 0.14em; margin-bottom: -0.14em; }
 .hero__line > span { display: inline-block; will-change: transform; }
-.hero__bg canvas { opacity: 0; transition: opacity 1.6s var(--ease-out); }
+.hero__bg canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; opacity: 0; transition: opacity 1.6s var(--ease-out); }
 html.gl-on .hero__bg canvas { opacity: 1; }
 @media (max-width: 640px) { .schematic { display: none; } }
 .hero__lede { max-width: 52ch; color: var(--bone-2); font-size: var(--step-1); line-height: 1.5; }

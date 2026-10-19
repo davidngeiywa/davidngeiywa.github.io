@@ -33,14 +33,15 @@
   } else heroIntro();
 
   // Rotating word with a scramble.
-  const rot = $('.hero__rotator');
+  const rotBox = $('.hero__rotator');
+  const rot = rotBox && $('.hero__rot-text', rotBox);
   if (rot && window.ScrambleTextPlugin) {
-    const words = JSON.parse(rot.dataset.words || '[]');
+    const words = JSON.parse(rotBox.dataset.words || '[]');
     let i = 0;
     const next = () => {
       if (!motion() || document.hidden) return;
       i = (i + 1) % words.length;
-      gsap.to(rot, { duration: 1.1, scrambleText: { text: words[i], chars: 'lowerCase', speed: 0.5, revealDelay: 0.25 }, ease: 'none' });
+      gsap.to(rot, { duration: 1.1, scrambleText: { text: words[i], chars: 'aceinorsuv', speed: 0.5, revealDelay: 0.25 }, ease: 'none' });
     };
     setInterval(next, 3200);
   }

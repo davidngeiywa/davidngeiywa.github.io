@@ -55,13 +55,20 @@ if (canvas && !reduce) {
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program });
 
     const hero = canvas.closest('.hero');
-    const resize = () => {
-      const w = hero.clientWidth, h = hero.clientHeight;
+    // Size the drawing buffer from the window, not the hero: content changes inside the hero must never
+    // resize (and so clear) the canvas. CSS stretches it to the hero; the buffer redraws in the same frame.
+    let lastW = 0;
+    const resize = force => {
+      const w = window.innerWidth, h = Math.max(hero.clientHeight, window.innerHeight);
+      if (!force && Math.abs(w - lastW) < 2) return;
+      lastW = w;
       renderer.setSize(w, h);
       program.uniforms.uRes.value = [gl.drawingBufferWidth, gl.drawingBufferHeight];
+      renderer.render({ scene: mesh });
     };
-    new ResizeObserver(resize).observe(hero);
-    resize();
+    let rt;
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => resize(false), 150); });
+    resize(true);
 
     const target = [0.7, 0.6], cur = [0.7, 0.6];
     window.addEventListener('pointermove', e => {
