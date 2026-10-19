@@ -777,10 +777,20 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after 
 html.reduce-motion .grain { animation: none; }
 
 /* ---------- Roles strip (under the stats) ---------- */
-.roles { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: 0; margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); align-items: start; }
+.roles { display: grid; grid-template-columns: auto repeat(4, minmax(0, 1fr)); gap: 0; margin-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); align-items: start; }
 .roles .section-index { padding: 22px 32px 0 0; }
 .role { display: grid; gap: 6px; padding: 22px 24px 0 0; }
 .role__t { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--volt); }
 .role__o { font-size: clamp(1.25rem, 2vw, 1.7rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
 .role__d { color: var(--mute); font-size: 0.92rem; line-height: 1.5; max-width: 36ch; }
 @media (max-width: 860px) { .roles { grid-template-columns: 1fr; } .role { padding-right: 0; } }
+
+/* ---------- Contact: person card ---------- */
+.person { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); align-items: center; margin-top: clamp(40px, 6vw, 72px); padding: clamp(20px, 2.6vw, 32px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: linear-gradient(120deg, var(--graphite), var(--ink-2)); }
+.person__photo { width: clamp(112px, 12vw, 168px); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-2), 0 0 0 6px var(--ink), 0 0 0 7px rgba(212, 255, 58, .55); }
+.person__name { font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 650; letter-spacing: -0.04em; line-height: 1.05; }
+.person__lede { margin-top: 8px; color: var(--bone-2); max-width: 56ch; }
+.person__roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding: 0; list-style: none; }
+.person__roles li { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line-2); font-size: 0.88rem; color: var(--bone); }
+.person__roles li span { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: .05em; text-transform: uppercase; color: var(--volt); }
+@media (max-width: 640px) { .person { grid-template-columns: 1fr; justify-items: start; } }
